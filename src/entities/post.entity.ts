@@ -9,7 +9,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./user.entity";
-import { ImagePost } from "./imagePost.entity";
+import { Image } from "./image.entity";
+import { Comment } from "./comment.entity";
 
 @Entity("posts")
 export class Post {
@@ -59,6 +60,9 @@ export class Post {
   @JoinColumn()
   user: User;
 
-  @OneToMany(() => ImagePost, (imagePost) => imagePost.post)
-  imagePost: ImagePost[];
+  @OneToMany(() => Image, (images) => images.post)
+  images: Image[];
+
+  @OneToMany(() => Comment, (comments) => comments.post)
+  comments: Comment[];
 }

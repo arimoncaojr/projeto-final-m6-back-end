@@ -8,18 +8,21 @@ import {
 } from "typeorm";
 import { Post } from "./post.entity";
 
-@Entity("images")
-export class Image {
+@Entity("comments")
+export class Comment {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ length: 500 })
+  description: string;
+
   @Column({ length: 200 })
-  imageLink: string;
+  userComment: string;
 
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => Post, (post) => post.images, {
+  @ManyToOne(() => Post, (post) => post.comments, {
     nullable: true,
     onDelete: "CASCADE",
   })
