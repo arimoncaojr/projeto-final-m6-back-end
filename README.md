@@ -1,4 +1,4 @@
-Para clonar o repositório e configurar o ambiente virtual, siga os passos abaixo:
+Para clonar o repositório e rodar o projeto, siga os passos abaixo:
 
 1. Clone o repositório utilizando a chave SSH:
 
