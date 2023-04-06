@@ -48,6 +48,9 @@ export class User {
   @Column({ type: "enum", enum: AccountType })
   typeOfAccount: AccountType;
 
+  @Column()
+  isActive: boolean;
+
   @OneToOne(() => Address, (address) => address.user, {
     eager: true,
     onDelete: "SET NULL",
