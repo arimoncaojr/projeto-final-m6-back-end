@@ -14,7 +14,7 @@ import {
 import { Address } from "./address.entity";
 import { Post } from "./post.entity";
 
-enum AccountType {
+export enum AccountType {
   comprador = "comprador",
   anunciante = "anunciante",
 }
