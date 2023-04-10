@@ -21,6 +21,7 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
+      .lowercase()
       .required(),
     address: addressRequestSerializer,
   }) as unknown as SchemaOf<IUserRequest>;
