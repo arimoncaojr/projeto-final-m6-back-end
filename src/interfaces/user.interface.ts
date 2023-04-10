@@ -1,8 +1,4 @@
-import {
-  IAddressRequest,
-  IAddressResponse,
-  IAddressUpdate,
-} from "./address.interface";
+import { IAddressRequest, IAddressResponse } from "./address.interface";
 
 export interface IUserRequest {
   name: string;
