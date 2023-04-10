@@ -13,10 +13,10 @@ export const createUserService = async (
   const userRepository = AppDataSource.getRepository(User);
   const addressRepository = AppDataSource.getRepository(Address);
 
-  const existingUser = await userRepository.findOneBy({
+  const existingEmail = await userRepository.findOneBy({
     email: userData.email,
   });
-  if (existingUser) {
+  if (existingEmail) {
     throw new AppError("User with the same email already exists", 409);
   }
 
@@ -25,22 +25,27 @@ export const createUserService = async (
     throw new AppError("User with the same CPF already exists", 409);
   }
 
-  const user = userRepository.create({
-    ...userData,
-    address: userData.address,
-  });
-
-  const address = addressRepository.create(userData.address);
-  const savedAddress = await addressRepository.save(address);
+  const user = userRepository.create(userData);
 
   const savedUser = await userRepository.save(user);
 
-  const userResponse = userResponseSerializer.cast(savedUser);
-  const addressResponse = addressResponseSerializer.cast(savedAddress);
+  const address = addressRepository.create({
+    ...userData.address,
+    user: savedUser,
+  });
+
+  const savedAddress = await addressRepository.save(address);
+
+  savedUser.address = savedAddress;
+  await userRepository.save(savedUser);
+
+  const userResponse = await userResponseSerializer.validate(savedUser, {
+    stripUnknown: true,
+  });
 
   const addressResponseWithUserId: IAddressResponse = {
-    ...addressResponse,
-    userId: user.id,
+    ...savedAddress,
+    user: userResponse.id,
   };
 
   return { ...userResponse, address: addressResponseWithUserId };
