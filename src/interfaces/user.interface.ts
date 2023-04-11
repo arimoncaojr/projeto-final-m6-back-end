@@ -1,4 +1,8 @@
-import { IAddressRequest, IAddressResponse } from "./address.interface";
+import {
+  IAddressRequest,
+  IAddressResponse,
+  IAddressUpdate,
+} from "./address.interface";
 import { AccountType } from "../entities/user.entity";
 
 export interface IUserRequest {
@@ -28,4 +32,14 @@ export interface IUserResponse {
   address: IAddressResponse;
 }
 
-export interface IUserUpdate extends Partial<IUserRequest> {}
+export interface IUserUpdate {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  password?: string;
+  phoneNumber?: string;
+  dateOfBirth?: Date;
+  description?: string;
+  typeOfAccount?: AccountType;
+  address?: IAddressUpdate;
+}
