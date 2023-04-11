@@ -11,13 +11,13 @@ export const imageSchema: SchemaOf<IImage> = yup.object().shape({
 });
 
 export const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
-  mark: yup.string().required(),
-  model: yup.string().required(),
+  mark: yup.string().required().lowercase(),
+  model: yup.string().required().lowercase(),
   year: yup.string().required(),
-  fuelType: yup.string().required(),
+  fuelType: yup.string().required().lowercase(),
   price: yup.string().required(),
   tablePriceFiper: yup.string().required(),
-  color: yup.string().required(),
+  color: yup.string().required().lowercase(),
   kilometers: yup.string().required(),
   description: yup.string().required(),
   imageCap: yup.string().required(),
