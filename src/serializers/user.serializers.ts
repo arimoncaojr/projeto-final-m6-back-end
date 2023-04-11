@@ -14,7 +14,7 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
     name: yup.string().max(100).required().lowercase(),
     email: yup.string().email().max(150).required(),
     cpf: yup.string().max(11).required(),
-    password: yup.string().max(150).required(),
+    password: yup.string().min(5).max(150).required(),
     phoneNumber: yup.string().max(11).required(),
     dateOfBirth: yup.date().required(),
     description: yup.string().max(200).notRequired().lowercase(),
