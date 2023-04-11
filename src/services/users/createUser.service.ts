@@ -5,7 +5,6 @@ import { Address } from "../../entities/address.entity";
 import { IUserRequest, IUserResponse } from "../../interfaces/user.interface";
 import { IAddressResponse } from "../../interfaces/address.interface";
 import { userResponseSerializer } from "../../serializers/user.serializers";
-import { addressResponseSerializer } from "../../serializers/address.serializers";
 
 export const createUserService = async (
   userData: IUserRequest
