@@ -21,7 +21,7 @@ userRoutes.post(
 );
 
 userRoutes.patch(
-  "",
+  "/profile",
   ensureAuthMiddleware,
   ensureFieldsUserMiddleware,
   ensureDataIsValidMiddleware(userUpdateSerializer),

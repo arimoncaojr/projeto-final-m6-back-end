@@ -31,6 +31,8 @@ export const updateUserService = async (
     updatedAt: new Date(),
   });
 
+  await addressRepository.save(updateAddress);
+
   const updateUser = userRepository.create({
     ...foundUserById,
     ...userData,
