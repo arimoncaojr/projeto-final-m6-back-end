@@ -15,6 +15,8 @@ export const ensureFieldsUserMiddleware = async (
     req.body.updatedAt === false ||
     req.body.isActive ||
     req.body.isActive === false ||
+    req.body.posts ||
+    req.body.posts === false ||
     req.body.address.id ||
     req.body.address.id === false ||
     req.body.address.createdAt ||
