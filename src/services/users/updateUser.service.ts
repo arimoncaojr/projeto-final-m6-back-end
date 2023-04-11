@@ -28,7 +28,6 @@ export const updateUserService = async (
     city: city || foundUserById.address.city,
     number: number || foundUserById.address.number,
     complement: complement || foundUserById.address.complement,
-    updatedAt: new Date(),
   });
 
   await addressRepository.save(updateAddress);
