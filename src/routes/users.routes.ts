@@ -3,9 +3,9 @@ import {
   createUserController,
   updateUserController,
 } from "../controllers/users.controller";
-import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
-import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
-import ensureUserLoggedMiddleWare from "../middlewares/ensureUserLogged.middleware";
+import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
+import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
+import { ensureFieldsUserMiddleware } from "../middlewares/ensureFieldsUser.middleware";
 import {
   userRequestSerializer,
   userUpdateSerializer,
@@ -20,9 +20,9 @@ userRoutes.post(
 );
 
 userRoutes.patch(
-  "/:id",
+  "",
   ensureAuthMiddleware,
-  ensureUserLoggedMiddleWare,
+  ensureFieldsUserMiddleware,
   ensureDataIsValidMiddleware(userUpdateSerializer),
   updateUserController
 );

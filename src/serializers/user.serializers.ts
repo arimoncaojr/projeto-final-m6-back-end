@@ -5,7 +5,10 @@ import {
   IUserResponse,
   IUserUpdate,
 } from "../interfaces/user.interface";
-import { addressRequestSerializer } from "./address.serializers";
+import {
+  addressRequestSerializer,
+  addressUpdateSerializer,
+} from "./address.serializers";
 import { AccountType } from "../entities/user.entity";
 
 export const userRequestSerializer: SchemaOf<IUserRequest> = yup
@@ -58,5 +61,5 @@ export const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
     .string()
     .oneOf(Object.values(AccountType), "Invalid account Type")
     .notRequired(),
-  address: addressRequestSerializer.notRequired(),
+  address: addressUpdateSerializer.notRequired(),
 }) as unknown as SchemaOf<IUserUpdate>;
