@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 app.use("/login", sessionRoutes);
-app.use("/users/profile/posts", postsRoutes);
+app.use("/posts", postsRoutes);
 
 app.use(handleError);
 

@@ -1,4 +1,3 @@
-import { getManager } from "typeorm";
 import AppDataSource from "../../data-source";
 import { Image } from "../../entities/image.entity";
 import { Post } from "../../entities/post.entity";
