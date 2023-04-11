@@ -3,6 +3,6 @@ import { ISessionLogin } from "../interfaces/session.interface";
 import { SchemaOf } from "yup";
 
 export const loginSessionSerializer: yup.SchemaOf<ISessionLogin> = yup.object().shape({
-     emailOrNickname: yup.string().required(), 
+     email: yup.string().required(), 
      password: yup.string().required(),
 }) as unknown as SchemaOf<ISessionLogin>; 
