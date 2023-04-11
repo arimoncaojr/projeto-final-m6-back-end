@@ -6,7 +6,7 @@ import { Address } from "./entities/address.entity";
 import { Post } from "./entities/post.entity";
 import { Image } from "./entities/image.entity";
 import { Comment } from "./entities/comment.entity";
-import { createEntities1681220717714 } from "./migrations/1681220717714-createEntities";
+import { Inicial1681225224047 } from "./migrations/1681225224047-inicial";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "production"
@@ -14,7 +14,7 @@ const AppDataSource = new DataSource(
         type: "postgres",
         url: process.env.DATABASE_URL,
         entities: [User, Address, Post, Image, Comment],
-        migrations: [createEntities1681220717714],
+        migrations: [Inicial1681225224047],
       }
     : {
         type: "postgres",
@@ -26,7 +26,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Address, Post, Image, Comment],
-        migrations: [createEntities1681220717714],
+        migrations: [Inicial1681225224047],
       }
 );
 
