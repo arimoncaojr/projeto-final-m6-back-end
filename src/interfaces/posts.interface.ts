@@ -16,6 +16,12 @@ export interface IPostRequest {
   images: IImage[];
 }
 
+export interface IImageResponse {
+  id: string;
+  imageLink: string;
+  createdAt: Date;
+}
+
 export interface IPostResponse {
   id: string;
   isActive: boolean;
@@ -27,6 +33,7 @@ export interface IPostResponse {
   fuelType: string;
   price: string;
   tablePriceFiper: string;
+  isGoodPurchase: boolean;
   color: string;
   kilometers: string;
   description: string;
