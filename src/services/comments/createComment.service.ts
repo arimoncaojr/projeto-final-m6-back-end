@@ -6,13 +6,17 @@ import {
   ICommentRequest,
   ICommentResponse,
 } from "../../interfaces/comment.interface";
-import { commentResponseSerializer } from "../../serializers/comment.serializers";
+import { validate as uuidValidate } from "uuid";
 
 export const createCommentService = async (
   commentData: ICommentRequest,
   userId: string,
   postId: string
 ): Promise<ICommentResponse> => {
+  if (!uuidValidate(postId)) {
+    throw new AppError("Invalid post ID!", 400);
+  }
+
   const commentRepository = AppDataSource.getRepository(Comment);
   const postRepository = AppDataSource.getRepository(Post);
 
@@ -30,9 +34,5 @@ export const createCommentService = async (
 
   await commentRepository.save(comment);
 
-  const commentResponse = await commentResponseSerializer.validate(comment, {
-    stripUnknown: true,
-  });
-
-  return { ...commentResponse, post: existingPost.id };
+  return { ...comment, post: existingPost.id };
 };
