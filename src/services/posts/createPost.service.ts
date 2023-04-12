@@ -27,7 +27,7 @@ const createPostService = async (
     isGoodPurchase: false,
   };
 
-  if ((price / priceFiper) * 100 > 90) {
+  if ((price / priceFiper) * 100 > 95) {
     dataPost.isGoodPurchase = false;
   } else {
     dataPost.isGoodPurchase = true;
