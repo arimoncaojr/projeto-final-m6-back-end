@@ -13,8 +13,8 @@ export const addressRequestSerializer: SchemaOf<IAddressRequest> = yup
     city: yup.string().max(100).required().lowercase(),
     state: yup.string().max(2).required().lowercase(),
     street: yup.string().max(200).required().lowercase(),
-    number: yup.string().max(5).notRequired(),
-    complement: yup.string().max(200).notRequired().lowercase(),
+    number: yup.string().max(5).notRequired().nullable(),
+    complement: yup.string().max(200).notRequired().lowercase().nullable(),
   });
 
 export const addressResponseSerializer: SchemaOf<IAddressResponse> = yup
