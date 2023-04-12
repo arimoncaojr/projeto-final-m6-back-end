@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { SchemaOf } from "yup";
 import {
   IImage,
+  IImageResponse,
   IPostRequest,
   IPostResponse,
 } from "../interfaces/posts.interface";
@@ -9,6 +10,14 @@ import {
 export const imageSchema: SchemaOf<IImage> = yup.object().shape({
   imageLink: yup.string().required(),
 });
+
+export const imageSchemaResponse: SchemaOf<IImageResponse> = yup
+  .object()
+  .shape({
+    id: yup.string().required(),
+    imageLink: yup.string().required(),
+    createdAt: yup.date().required(),
+  });
 
 export const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   mark: yup.string().required().lowercase(),
@@ -38,6 +47,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
     price: yup.string().required(),
     year: yup.string().required(),
     tablePriceFiper: yup.string().required(),
+    isGoodPurchase: yup.boolean().required(),
     isActive: yup.boolean().required(),
     createdAt: yup.date().required(),
     updatedAt: yup.date().required(),
