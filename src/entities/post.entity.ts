@@ -44,7 +44,7 @@ export class Post {
   @Column({ length: 100 })
   tablePriceFiper: string;
 
-  @Column({ length: 200 })
+  @Column({ length: 200, nullable: true })
   description: string;
 
   @Column()
@@ -66,9 +66,12 @@ export class Post {
   @JoinColumn()
   user: User;
 
-  @OneToMany(() => Image, (images) => images.post)
+  @OneToMany(() => Image, (images) => images.post, {
+    nullable: true,
+    onDelete: "CASCADE",
+  })
   images: Image[];
 
-  @OneToMany(() => Comment, (comments) => comments.post)
+  @OneToMany(() => Comment, (comments) => comments.post, {})
   comments: Comment[];
 }
