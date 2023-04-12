@@ -12,7 +12,7 @@ export interface IUserRequest {
   password: string;
   phoneNumber: string;
   dateOfBirth: Date;
-  description?: string;
+  description?: string | null;
   typeOfAccount: AccountType;
   address: IAddressRequest;
 }
