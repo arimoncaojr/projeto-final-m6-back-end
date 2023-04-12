@@ -61,3 +61,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
       })
       .required(),
   });
+
+export const listPostSerializer: SchemaOf<IPostResponse[]> = yup.array(
+  postResponseSerializer
+);
