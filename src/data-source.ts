@@ -14,6 +14,7 @@ const AppDataSource = new DataSource(
         url: process.env.DATABASE_URL,
         entities: [User, Address, Post, Image, Comment],
         migrations: [],
+
       }
     : {
         type: "postgres",
