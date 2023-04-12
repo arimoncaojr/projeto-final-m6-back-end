@@ -28,9 +28,9 @@ export const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   tablePriceFiper: yup.string().required(),
   color: yup.string().required().lowercase(),
   kilometers: yup.string().required(),
-  description: yup.string().required(),
+  description: yup.string().notRequired().nullable(),
   imageCap: yup.string().required(),
-  images: yup.array(imageSchema),
+  images: yup.array(imageSchema).notRequired().nullable(),
 });
 
 export const postResponseSerializer: SchemaOf<IPostResponse> = yup
