@@ -4,6 +4,7 @@ import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.mi
 import { postSerializer } from "../serializers/post.serializers";
 import { commentRequestSerializer } from "../serializers/comment.serializers";
 import { createCommentController } from "../controllers/comments.controller";
+import { delistPostController } from "../controllers/posts.controller";
 import {
   createPostController,
   listPostByIdController,
@@ -25,6 +26,8 @@ postsRoutes.post(
   ensureDataIsValidMiddleware(commentRequestSerializer),
   createCommentController
 );
+
+postsRoutes.patch("/:id/delist", ensureAuthMiddleware, delistPostController);
 postsRoutes.get("", listPostsController);
 
 postsRoutes.get("/:id", listPostByIdController);
