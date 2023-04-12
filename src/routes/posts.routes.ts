@@ -3,8 +3,9 @@ import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { postSerializer } from "../serializers/post.serializers";
 import { commentRequestSerializer } from "../serializers/comment.serializers";
-import { createPostController } from "../controllers/posts.controller";
+import { createPostController, deletePostController } from "../controllers/posts.controller";
 import { createCommentController } from "../controllers/comments.controller";
+import { checkUserIsAdvertiserMiddleware } from "../middlewares/checkUserIsAdvertiser.middleware";
 
 export const postsRoutes = Router();
 
@@ -21,3 +22,5 @@ postsRoutes.post(
   ensureDataIsValidMiddleware(commentRequestSerializer),
   createCommentController
 );
+
+postsRoutes.delete("/:id",ensureAuthMiddleware,checkUserIsAdvertiserMiddleware, deletePostController)
