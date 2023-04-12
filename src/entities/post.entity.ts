@@ -11,7 +11,6 @@ import {
 import { User } from "./user.entity";
 import { Image } from "./image.entity";
 import { Comment } from "./comment.entity";
-import { Expose } from "class-transformer";
 
 @Entity("posts")
 export class Post {
@@ -48,10 +47,8 @@ export class Post {
   @Column({ length: 200 })
   description: string;
 
-  @Expose()
-  isGoodPurchase(): boolean {
-    return parseFloat(this.price) <= parseFloat(this.tablePriceFiper);
-  }
+  @Column()
+  isGoodPurchase: boolean;
 
   @Column({ default: true })
   isActive: boolean;
