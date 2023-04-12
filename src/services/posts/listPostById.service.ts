@@ -3,14 +3,19 @@ import { Post } from "../../entities/post.entity";
 import { AppError } from "../../errors/AppError";
 
 export const listPostByIdService = async (id: string) => {
-  const adsRepository = AppDataSource.getRepository(Post);
+  const postRepository = AppDataSource.getRepository(Post);
 
-  const ads = await adsRepository.findOneBy({
-    id: id,
+  const posts = await postRepository.findOne({
+    where: { id: id },
+    relations: {
+      user: true,
+      images: true,
+      comments: true,
+    },
   });
 
-  if (ads) {
-    return ads;
+  if (posts) {
+    return posts;
   }
 
   throw new AppError("Anúncio não encontrado", 404);

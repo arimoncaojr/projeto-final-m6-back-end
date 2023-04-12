@@ -1,10 +1,7 @@
 import { Post } from "../../entities/post.entity";
 import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/AppError";
-import {
-  listPostSerializer,
-  postResponseSerializer,
-} from "../../serializers/post.serializers";
+import { listPostSerializer } from "../../serializers/post.serializers";
 import { IPostResponse } from "../../interfaces/posts.interface";
 
 export const listPostsService = async (): Promise<IPostResponse[]> => {
@@ -13,6 +10,8 @@ export const listPostsService = async (): Promise<IPostResponse[]> => {
   const posts = await postRepository.find({
     relations: {
       user: true,
+      images: true,
+      comments: true,
     },
   });
 
