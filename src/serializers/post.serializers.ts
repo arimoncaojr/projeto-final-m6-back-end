@@ -40,7 +40,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
     model: yup.string().required(),
     mark: yup.string().required(),
     color: yup.string().required(),
-    description: yup.string().required(),
+    description: yup.string().notRequired().nullable(),
     fuelType: yup.string().required(),
     imageCap: yup.string().required(),
     kilometers: yup.string().required(),
@@ -51,7 +51,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
     isActive: yup.boolean().required(),
     createdAt: yup.date().required(),
     updatedAt: yup.date().required(),
-    images: yup.array(imageSchema).required(),
+    images: yup.array(imageSchema).notRequired().nullable(),
     user: yup
       .object()
       .shape({
@@ -61,3 +61,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
       })
       .required(),
   });
+
+export const listPostSerializer: SchemaOf<IPostResponse[]> = yup.array(
+  postResponseSerializer
+);

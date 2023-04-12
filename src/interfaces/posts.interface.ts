@@ -11,9 +11,9 @@ export interface IPostRequest {
   tablePriceFiper: string;
   color: string;
   kilometers: string;
-  description: string;
+  description?: string | null;
   imageCap: string;
-  images: IImage[];
+  images?: IImage[] | null;
 }
 
 export interface IImageResponse {
