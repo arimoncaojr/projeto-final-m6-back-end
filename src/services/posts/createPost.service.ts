@@ -27,7 +27,7 @@ const createPostService = async (
     isGoodPurchase: false,
   };
 
-  if ((price / priceFiper) * 100 > 90) {
+  if ((price / priceFiper) * 100 > 95) {
     dataPost.isGoodPurchase = false;
   } else {
     dataPost.isGoodPurchase = true;
@@ -40,14 +40,16 @@ const createPostService = async (
 
   const postSaved = await postsRepository.save(newPost);
 
-  images.map(async (img) => {
-    const newImage = imagesRepository.create({
-      imageLink: img.imageLink,
-      post: postSaved,
+  if (images) {
+    images.map(async (img) => {
+      const newImage = imagesRepository.create({
+        imageLink: img.imageLink,
+        post: postSaved,
+      });
+      await imagesRepository.save(newImage);
+      return newImage;
     });
-    await imagesRepository.save(newImage);
-    return newImage;
-  });
+  }
 
   const postResponse = await postResponseSerializer.validate(newPost, {
     stripUnknown: true,

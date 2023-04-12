@@ -12,7 +12,7 @@ export interface IUserRequest {
   password: string;
   phoneNumber: string;
   dateOfBirth: Date;
-  description?: string;
+  description?: string | null;
   typeOfAccount: AccountType;
   address: IAddressRequest;
 }
@@ -23,7 +23,7 @@ export interface IUserResponse {
   cpf: string;
   phoneNumber: string;
   dateOfBirth: Date;
-  description?: string;
+  description?: string | null;
   typeOfAccount: AccountType;
   id: string;
   isActive: boolean;
@@ -39,7 +39,7 @@ export interface IUserUpdate {
   password?: string;
   phoneNumber?: string;
   dateOfBirth?: Date;
-  description?: string;
+  description?: string | null;
   typeOfAccount?: AccountType;
   address?: IAddressUpdate;
 }

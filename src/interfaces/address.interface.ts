@@ -3,8 +3,8 @@ export interface IAddressRequest {
   state: string;
   street: string;
   city: string;
-  number?: string;
-  complement?: string;
+  number?: string | null;
+  complement?: string | null;
 }
 
 export interface IAddressResponse extends IAddressRequest {

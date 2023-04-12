@@ -32,7 +32,7 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
 export const userResponseSerializer: SchemaOf<IUserResponse> = yup
   .object()
   .shape({
-    name: yup.string().max(100).notRequired().lowercase(),
+    name: yup.string().max(100).notRequired(),
     email: yup.string().email().max(150).notRequired(),
     cpf: yup.string().max(11).notRequired(),
     phoneNumber: yup.string().max(11).notRequired(),
@@ -50,7 +50,7 @@ export const userResponseSerializer: SchemaOf<IUserResponse> = yup
   }) as unknown as SchemaOf<IUserResponse>;
 
 export const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
-  name: yup.string().max(100).notRequired().lowercase(),
+  name: yup.string().max(100).notRequired(),
   email: yup.string().email().max(150).notRequired(),
   cpf: yup.string().max(11).notRequired(),
   password: yup.string().max(150).notRequired(),
