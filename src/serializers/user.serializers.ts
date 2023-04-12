@@ -37,7 +37,7 @@ export const userResponseSerializer: SchemaOf<IUserResponse> = yup
     cpf: yup.string().max(11).notRequired(),
     phoneNumber: yup.string().max(11).notRequired(),
     dateOfBirth: yup.date().notRequired(),
-    description: yup.string().max(200).notRequired(),
+    description: yup.string().max(200).notRequired().nullable(),
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
