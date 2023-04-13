@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
-import { IPostRequest } from "../interfaces/posts.interface";
+import {
+  IPostRequest,
+  IPostUpdateRequest,
+} from "../interfaces/posts.interface";
 import createPostService from "../services/posts/createPost.service";
 import { delistPostService } from "../services/posts/delistPost.service";
 import { listPostsService } from "../services/posts/listPosts.service";
 import { listPostByIdService } from "../services/posts/listPostById.service";
+import updatePostService from "../services/posts/updatePost.service";
 
 export const createPostController = async (req: Request, res: Response) => {
   const reqData: IPostRequest = req.body;
@@ -28,4 +32,12 @@ export const listPostsController = async (req: Request, res: Response) => {
 export const listPostByIdController = async (req: Request, res: Response) => {
   const ads = await listPostByIdService(req.params.id);
   return res.status(200).json(ads);
+};
+
+export const updatePostController = async (req: Request, res: Response) => {
+  const reqData: IPostUpdateRequest = req.body;
+  const userId: string = req.user.id;
+  const postId: string = req.params.id;
+  const data = await updatePostService(reqData, userId, postId);
+  return res.status(200).json(data);
 };

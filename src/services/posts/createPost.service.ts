@@ -2,13 +2,10 @@ import AppDataSource from "../../data-source";
 import { Image } from "../../entities/image.entity";
 import { Post } from "../../entities/post.entity";
 import { User } from "../../entities/user.entity";
-import { IPostRequest, IPostResponse } from "../../interfaces/posts.interface";
+import { IPostRequest } from "../../interfaces/posts.interface";
 import { postResponseSerializer } from "../../serializers/post.serializers";
 
-const createPostService = async (
-  reqData: IPostRequest,
-  user
-): Promise<IPostResponse> => {
+const createPostService = async (reqData: IPostRequest, user) => {
   const imagesRepository = AppDataSource.getRepository(Image);
   const usersRepository = AppDataSource.getRepository(User);
   const postsRepository = AppDataSource.getRepository(Post);
@@ -41,14 +38,17 @@ const createPostService = async (
   const postSaved = await postsRepository.save(newPost);
 
   if (images) {
-    images.map(async (img) => {
-      const newImage = imagesRepository.create({
-        imageLink: img.imageLink,
-        post: postSaved,
-      });
-      await imagesRepository.save(newImage);
-      return newImage;
-    });
+    let imagesResponse = await Promise.all(
+      images.map(async (img) => {
+        const newImage = imagesRepository.create({
+          imageLink: img.imageLink,
+          post: postSaved,
+        });
+        await imagesRepository.save(newImage);
+        return newImage;
+      })
+    );
+    postSaved.images = imagesResponse;
   }
 
   const postResponse = await postResponseSerializer.validate(newPost, {
