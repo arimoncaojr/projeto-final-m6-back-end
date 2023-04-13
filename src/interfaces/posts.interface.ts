@@ -45,3 +45,16 @@ export interface IPostResponse {
     phoneNumber: string;
   };
 }
+
+export interface IPostUpdateRequest {
+  mark?: string;
+  model?: string;
+  year?: string;
+  fuelType?: string;
+  price?: string;
+  color?: string;
+  kilometers?: string;
+  description?: string;
+  imageCap?: string;
+  images?: IImage[];
+}
