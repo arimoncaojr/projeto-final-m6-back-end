@@ -4,6 +4,7 @@ import {
   IPostUpdateRequest,
 } from "../interfaces/posts.interface";
 import createPostService from "../services/posts/createPost.service";
+import { deletePostService } from "../services/posts/deletePost.service";
 import { delistPostService } from "../services/posts/delistPost.service";
 import { listPostsService } from "../services/posts/listPosts.service";
 import { listPostByIdService } from "../services/posts/listPostById.service";
@@ -15,6 +16,12 @@ export const createPostController = async (req: Request, res: Response) => {
   const data = await createPostService(reqData, user);
   return res.status(201).json(data);
 };
+
+export const deletePostController = async (req: Request, res: Response) => {
+  const idPost = req.params.id
+  await deletePostService(idPost)
+  return res.status(204).json({})
+}
 
 export const delistPostController = async (req: Request, res: Response) => {
   const postId: string = req.params.id;

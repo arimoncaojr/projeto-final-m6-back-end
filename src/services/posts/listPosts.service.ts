@@ -8,6 +8,7 @@ export const listPostsService = async (): Promise<IPostResponse[]> => {
   const postRepository = AppDataSource.getRepository(Post);
 
   const posts = await postRepository.find({
+    where: { isActive: true },
     relations: {
       user: true,
       images: true,

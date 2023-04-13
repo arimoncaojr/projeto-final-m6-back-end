@@ -35,13 +35,9 @@ export const delistPostService = async (
     throw new AppError("You don't have authorization!", 401);
   }
 
-  if (!existingPost.isActive) {
-    throw new AppError("You post already delist!", 409);
-  }
-
   const delistPost = postRepository.create({
     ...existingPost,
-    isActive: false,
+    isActive: !existingPost.isActive,
   });
 
   await postRepository.save(delistPost);

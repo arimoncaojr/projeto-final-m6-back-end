@@ -20,7 +20,7 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
     password: yup.string().min(5).max(150).required(),
     phoneNumber: yup.string().max(11).required(),
     dateOfBirth: yup.date().required(),
-    description: yup.string().max(200).notRequired(),
+    description: yup.string().max(200).nullable().notRequired(),
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
@@ -32,12 +32,12 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
 export const userResponseSerializer: SchemaOf<IUserResponse> = yup
   .object()
   .shape({
-    name: yup.string().max(100).notRequired().lowercase(),
+    name: yup.string().max(100).notRequired(),
     email: yup.string().email().max(150).notRequired(),
     cpf: yup.string().max(11).notRequired(),
     phoneNumber: yup.string().max(11).notRequired(),
     dateOfBirth: yup.date().notRequired(),
-    description: yup.string().max(200).notRequired().lowercase(),
+    description: yup.string().max(200).nullable().notRequired().lowercase(),
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
@@ -50,7 +50,7 @@ export const userResponseSerializer: SchemaOf<IUserResponse> = yup
   }) as unknown as SchemaOf<IUserResponse>;
 
 export const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
-  name: yup.string().max(100).notRequired().lowercase(),
+  name: yup.string().max(100).notRequired(),
   email: yup.string().email().max(150).notRequired(),
   cpf: yup.string().max(11).notRequired(),
   password: yup.string().max(150).notRequired(),

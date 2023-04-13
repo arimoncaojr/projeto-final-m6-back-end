@@ -11,10 +11,13 @@ import {
   delistPostController,
   updatePostController,
 } from "../controllers/posts.controller";
+import { checkUserIsAdvertiserMiddleware } from "../middlewares/checkUserIsAdvertiser.middleware";
+import { postExistenceAndOwnershipMiddleware } from "../middlewares/postExistenceAndOwnership.middleware";
 import {
   createPostController,
   listPostByIdController,
   listPostsController,
+  deletePostController,
 } from "../controllers/posts.controller";
 import ensureTokenIsPostOwnerMiddleware from "../middlewares/ensureTokenIsPostOwner.middleware";
 
@@ -32,6 +35,14 @@ postsRoutes.post(
   ensureAuthMiddleware,
   ensureDataIsValidMiddleware(commentRequestSerializer),
   createCommentController
+);
+
+postsRoutes.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  checkUserIsAdvertiserMiddleware,
+  postExistenceAndOwnershipMiddleware,
+  deletePostController
 );
 
 postsRoutes.patch("/:id/delist", ensureAuthMiddleware, delistPostController);

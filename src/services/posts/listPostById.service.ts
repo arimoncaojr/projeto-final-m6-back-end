@@ -1,11 +1,18 @@
 import AppDataSource from "../../data-source";
 import { Post } from "../../entities/post.entity";
 import { AppError } from "../../errors/AppError";
+import { IPostResponse } from "../../interfaces/posts.interface";
+import {
+  listPostSerializer,
+  postResponseSerializer,
+} from "../../serializers/post.serializers";
 
-export const listPostByIdService = async (id: string) => {
+export const listPostByIdService = async (
+  id: string
+): Promise<IPostResponse> => {
   const postRepository = AppDataSource.getRepository(Post);
 
-  const posts = await postRepository.findOne({
+  const post = await postRepository.findOne({
     where: { id: id },
     relations: {
       user: true,
@@ -14,8 +21,12 @@ export const listPostByIdService = async (id: string) => {
     },
   });
 
-  if (posts) {
-    return posts;
+  if (post) {
+    const postResponse = await postResponseSerializer.validate(post, {
+      stripUnknown: true,
+    });
+
+    return postResponse;
   }
 
   throw new AppError("Anúncio não encontrado", 404);
