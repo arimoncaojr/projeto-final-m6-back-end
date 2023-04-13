@@ -43,6 +43,7 @@ export interface IPostResponse {
     id: string;
     email: string;
     phoneNumber: string;
+    name: string;
   };
 }
 
