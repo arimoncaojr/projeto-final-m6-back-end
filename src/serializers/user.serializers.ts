@@ -20,7 +20,7 @@ export const userRequestSerializer: SchemaOf<IUserRequest> = yup
     password: yup.string().min(5).max(150).required(),
     phoneNumber: yup.string().max(11).required(),
     dateOfBirth: yup.date().required(),
-    description: yup.string().max(200).notRequired().nullable(),
+    description: yup.string().max(200).nullable().notRequired(),
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
@@ -37,7 +37,7 @@ export const userResponseSerializer: SchemaOf<IUserResponse> = yup
     cpf: yup.string().max(11).notRequired(),
     phoneNumber: yup.string().max(11).notRequired(),
     dateOfBirth: yup.date().notRequired(),
-    description: yup.string().max(200).notRequired().nullable(),
+    description: yup.string().max(200).nullable().notRequired().lowercase(),
     typeOfAccount: yup
       .string()
       .oneOf(Object.values(AccountType), "Invalid account Type")
