@@ -31,6 +31,7 @@ export const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   color: yup.string().required().lowercase(),
   kilometers: yup.string().required(),
   description: yup.string().notRequired().nullable(),
+  isActive: yup.boolean().required(),
   imageCap: yup.string().required(),
   images: yup.array(imageSchema).notRequired().nullable(),
 });
@@ -81,6 +82,7 @@ export const postUpadteSerializer: SchemaOf<IPostUpdateRequest> = yup
     color: yup.string().notRequired().lowercase(),
     kilometers: yup.string().notRequired(),
     description: yup.string().notRequired().nullable(),
+    isActive: yup.boolean().notRequired(),
     imageCap: yup.string().notRequired(),
     images: yup.array(imageSchema).notRequired().nullable(),
   });
