@@ -52,6 +52,7 @@ export interface IPostUpdateRequest {
   model?: string;
   year?: string;
   fuelType?: string;
+  isActive?: boolean;
   price?: string;
   color?: string;
   kilometers?: string;

@@ -77,6 +77,7 @@ export const postUpadteSerializer: SchemaOf<IPostUpdateRequest> = yup
     model: yup.string().notRequired().lowercase(),
     year: yup.string().notRequired(),
     fuelType: yup.string().notRequired().lowercase(),
+    isActive: yup.boolean().required(),
     price: yup.string().notRequired(),
     color: yup.string().notRequired().lowercase(),
     kilometers: yup.string().notRequired(),
