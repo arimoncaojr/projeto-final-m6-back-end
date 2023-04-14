@@ -44,6 +44,7 @@ export interface IPostResponse {
     id: string;
     email: string;
     phoneNumber: string;
+    name: string;
   };
 }
 
@@ -52,11 +53,11 @@ export interface IPostUpdateRequest {
   model?: string;
   year?: string;
   fuelType?: string;
-  isActive?: boolean;
   price?: string;
   color?: string;
   kilometers?: string;
   description?: string;
+  isActive?: boolean;
   imageCap?: string;
   images?: IImage[];
 }
