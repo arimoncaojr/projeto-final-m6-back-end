@@ -12,7 +12,6 @@ export interface IPostRequest {
   color: string;
   kilometers: string;
   description?: string | null;
-  isActive: boolean;
   imageCap: string;
   images?: IImage[] | null;
 }
