@@ -28,6 +28,7 @@ export const postSerializer: SchemaOf<IPostRequest> = yup.object().shape({
   fuelType: yup.string().required().lowercase(),
   price: yup.string().required(),
   tablePriceFiper: yup.string().required(),
+  isActive: yup.boolean().required(),
   color: yup.string().required().lowercase(),
   kilometers: yup.string().required(),
   description: yup.string().notRequired().nullable(),
