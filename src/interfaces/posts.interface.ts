@@ -9,6 +9,7 @@ export interface IPostRequest {
   fuelType: string;
   price: string;
   tablePriceFiper: string;
+  isActive: boolean;
   color: string;
   kilometers: string;
   description?: string | null;
@@ -43,6 +44,7 @@ export interface IPostResponse {
     id: string;
     email: string;
     phoneNumber: string;
+    description: string;
     name: string;
   };
 }
