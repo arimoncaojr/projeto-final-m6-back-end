@@ -6,11 +6,6 @@ import { Address } from "./entities/address.entity";
 import { Post } from "./entities/post.entity";
 import { Image } from "./entities/image.entity";
 import { Comment } from "./entities/comment.entity";
-<<<<<<< HEAD
-=======
-import { createEntities1681307165440 } from "./migrations/1681307165440-createEntities";
-import { fixColumns1681334191156 } from "./migrations/1681334191156-fixColumns";
->>>>>>> b569838d388d69dbed03e5329128a2a09a8f1cd2
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "production"
@@ -18,11 +13,7 @@ const AppDataSource = new DataSource(
         type: "postgres",
         url: process.env.DATABASE_URL,
         entities: [User, Address, Post, Image, Comment],
-<<<<<<< HEAD
         migrations: [],
-=======
-        migrations: [createEntities1681307165440, fixColumns1681334191156],
->>>>>>> b569838d388d69dbed03e5329128a2a09a8f1cd2
       }
     : {
         type: "postgres",
@@ -34,11 +25,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Address, Post, Image, Comment],
-<<<<<<< HEAD
         migrations: [],
-=======
-        migrations: [createEntities1681307165440, fixColumns1681334191156],
->>>>>>> b569838d388d69dbed03e5329128a2a09a8f1cd2
       }
 );
 
