@@ -4,6 +4,8 @@ import {
   IUserRequest,
   IUserResponse,
   IUserUpdate,
+  IUserForgotRequest,
+  IUserForgotPass,
 } from "../interfaces/user.interface";
 import {
   addressRequestSerializer,
@@ -63,3 +65,15 @@ export const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
     .notRequired(),
   address: addressUpdateSerializer.notRequired(),
 }) as unknown as SchemaOf<IUserUpdate>;
+
+export const userForgotRequestSerializer: SchemaOf<IUserForgotRequest> = yup
+  .object()
+  .shape({
+    email: yup.string().email().required(),
+  });
+
+export const userFogotPassSerializer: SchemaOf<IUserForgotPass> = yup
+  .object()
+  .shape({
+    password: yup.string().required(),
+  });
