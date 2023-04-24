@@ -1,8 +1,18 @@
 import { Request, Response } from "express";
-import { IUserRequest, IUserUpdate } from "../interfaces/user.interface";
+import {
+  IUserRequest,
+  IUserUpdate,
+  IUserForgotRequest,
+  IUserForgotPass,
+} from "../interfaces/user.interface";
 import { createUserService } from "../services/users/createUser.service";
 import { updateUserService } from "../services/users/updateUser.service";
 import { listUserByIdService } from "../services/users/listUserById.service";
+import { deleteUserService } from "../services/users/deleteUser.service";
+import {
+  resetPassUserService,
+  resetPassByTokenService,
+} from "../services/users/resetPassUser.service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const userData: IUserRequest = req.body;
@@ -24,4 +34,30 @@ export const listUserByIdController = async (req: Request, res: Response) => {
   const userInfos = await listUserByIdService(userId);
 
   return res.status(200).json(userInfos);
+};
+
+export const deleteUserController = async (req: Request, res: Response) => {
+  const userId: string = req.user.id;
+  await deleteUserService(userId);
+
+  return res.status(204).json({});
+};
+
+export const resetPassUserController = async (req: Request, res: Response) => {
+  const userData: IUserForgotRequest = req.body;
+  await resetPassUserService(userData);
+
+  return res.status(200).json({ message: "E-mail de recuperação enviado" });
+};
+
+export const resetPassByTokenController = async (
+  req: Request,
+  res: Response
+) => {
+  const token: string = req.params.token;
+  const userData: IUserForgotPass = req.body;
+
+  await resetPassByTokenService(token, userData);
+
+  return res.status(200).json({ message: "Senha atualizada com sucesso" });
 };
