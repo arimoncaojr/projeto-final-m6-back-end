@@ -40,7 +40,6 @@ postsRoutes.post(
 postsRoutes.delete(
   "/:id",
   ensureAuthMiddleware,
-  checkUserIsAdvertiserMiddleware,
   postExistenceAndOwnershipMiddleware,
   deletePostController
 );

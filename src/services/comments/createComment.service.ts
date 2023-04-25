@@ -7,6 +7,7 @@ import {
   ICommentResponse,
 } from "../../interfaces/comment.interface";
 import { validate as uuidValidate } from "uuid";
+import { User } from "../../entities/user.entity";
 
 export const createCommentService = async (
   commentData: ICommentRequest,
@@ -19,6 +20,11 @@ export const createCommentService = async (
 
   const commentRepository = AppDataSource.getRepository(Comment);
   const postRepository = AppDataSource.getRepository(Post);
+  const usersRepository = AppDataSource.getRepository(User);
+
+  const findUser = await usersRepository.findOneBy({
+    id: userId,
+  });
 
   const existingPost = await postRepository.findOneBy({ id: postId });
 
@@ -28,7 +34,7 @@ export const createCommentService = async (
 
   const comment = commentRepository.create({
     ...commentData,
-    userComment: userId,
+    userComment: findUser.name,
     post: existingPost,
   });
 
