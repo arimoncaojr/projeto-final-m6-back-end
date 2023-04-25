@@ -18,6 +18,7 @@ export const listUserByIdService = async (userId: string) => {
       posts: {
         images: true,
         comments: true,
+        user: true,
       },
     },
   });
