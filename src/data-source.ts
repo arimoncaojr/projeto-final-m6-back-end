@@ -6,9 +6,9 @@ import { Address } from "./entities/address.entity";
 import { Post } from "./entities/post.entity";
 import { Image } from "./entities/image.entity";
 import { Comment } from "./entities/comment.entity";
-import { CreateEntities1681240167913 } from "./migrations/1681240167913-createEntities";
-import { AlterTable1681315760952 } from "./migrations/1681315760952-alterTable";
-import { AlterTableUser1682429451128 } from "./migrations/1682429451128-AlterTableUser"
+import { createEntities1681307165440 } from "./migrations/1681307165440-createEntities";
+import { fixColumns1681334191156 } from "./migrations/1681334191156-fixColumns";
+import { addNewFieldUser1682347662677 } from "./migrations/1682347662677-addNewFieldUser";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "production"
@@ -16,7 +16,11 @@ const AppDataSource = new DataSource(
         type: "postgres",
         url: process.env.DATABASE_URL,
         entities: [User, Address, Post, Image, Comment],
-        migrations: [CreateEntities1681240167913, AlterTable1681315760952, AlterTableUser1682429451128],
+        migrations: [
+          createEntities1681307165440,
+          fixColumns1681334191156,
+          addNewFieldUser1682347662677,
+        ],
       }
     : {
         type: "postgres",
@@ -28,7 +32,11 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Address, Post, Image, Comment],
-        migrations: [CreateEntities1681240167913, AlterTable1681315760952, AlterTableUser1682429451128],
+        migrations: [
+          createEntities1681307165440,
+          fixColumns1681334191156,
+          addNewFieldUser1682347662677,
+        ],
       }
 );
 
