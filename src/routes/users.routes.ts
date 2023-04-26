@@ -6,6 +6,7 @@ import {
   deleteUserController,
   resetPassUserController,
   resetPassByTokenController,
+  authenticationTokenSendEmailController,
 } from "../controllers/users.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
@@ -45,4 +46,9 @@ userRoutes.post(
   "/reset/:token",
   ensureDataIsValidMiddleware(userFogotPassSerializer),
   resetPassByTokenController
+);
+
+userRoutes.get(
+  "/authentication/:token",
+  authenticationTokenSendEmailController
 );

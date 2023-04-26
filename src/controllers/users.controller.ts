@@ -13,6 +13,7 @@ import {
   resetPassUserService,
   resetPassByTokenService,
 } from "../services/users/resetPassUser.service";
+import { authenticationTokenSendEmailService } from "../services/users/authenticationTokenSendEmail.Service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const userData: IUserRequest = req.body;
@@ -61,3 +62,10 @@ export const resetPassByTokenController = async (
 
   return res.status(200).json({ message: "Senha atualizada com sucesso" });
 };
+
+
+export const authenticationTokenSendEmailController = async (req: Request, res: Response) => { 
+  const token = req.params.token 
+  await authenticationTokenSendEmailService(token)
+  return res.status(200).json({ message: "token autenticado"})
+}
