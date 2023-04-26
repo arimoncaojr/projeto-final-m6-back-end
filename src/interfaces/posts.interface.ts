@@ -44,8 +44,9 @@ export interface IPostResponse {
     id: string;
     email: string;
     phoneNumber: string;
-    description: string;
     name: string;
+    description?: string;
+    typeOfAccount?: string;
   };
 }
 
