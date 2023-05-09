@@ -14,7 +14,7 @@ export const deleteCommentService = async (
     throw new AppError("Comment not found!", 404);
   }
 
-  if (userId !== foundComment.userComment) {
+  if (userId !== foundComment.userCommentId) {
     throw new AppError("You don't have authorization for this", 401);
   }
 

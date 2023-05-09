@@ -19,6 +19,9 @@ export class Comment {
   @Column({ length: 200 })
   userComment: string;
 
+  @Column({ length: 200 })
+  userCommentId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

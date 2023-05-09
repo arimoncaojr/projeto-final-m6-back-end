@@ -18,5 +18,6 @@ export const commentResponseSerializer: SchemaOf<ICommentResponse> = yup
     description: yup.string().notRequired(),
     createdAt: yup.date().notRequired(),
     userComment: yup.string().notRequired(),
+    userCommentId: yup.string().notRequired(),
     post: yup.string().notRequired(),
   });
