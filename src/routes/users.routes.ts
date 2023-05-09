@@ -7,6 +7,7 @@ import {
   resetPassUserController,
   resetPassByTokenController,
   authenticationTokenSendEmailController,
+  listProfileByIdController,
 } from "../controllers/users.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
@@ -52,3 +53,5 @@ userRoutes.get(
   "/authentication/:token",
   authenticationTokenSendEmailController
 );
+
+userRoutes.get("/profile/:id", listProfileByIdController);
