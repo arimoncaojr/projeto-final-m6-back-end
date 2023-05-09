@@ -37,6 +37,16 @@ export const listUserByIdController = async (req: Request, res: Response) => {
   return res.status(200).json(userInfos);
 };
 
+export const listProfileByIdController = async (
+  req: Request,
+  res: Response
+) => {
+  const userId: string = req.params.id;
+  const userInfos = await listUserByIdService(userId);
+
+  return res.status(200).json(userInfos);
+};
+
 export const deleteUserController = async (req: Request, res: Response) => {
   const userId: string = req.user.id;
   await deleteUserService(userId);
@@ -63,9 +73,11 @@ export const resetPassByTokenController = async (
   return res.status(200).json({ message: "Senha atualizada com sucesso" });
 };
 
-
-export const authenticationTokenSendEmailController = async (req: Request, res: Response) => { 
-  const token = req.params.token 
-  await authenticationTokenSendEmailService(token)
-  return res.status(200).json({ message: "token autenticado"})
-}
+export const authenticationTokenSendEmailController = async (
+  req: Request,
+  res: Response
+) => {
+  const token = req.params.token;
+  await authenticationTokenSendEmailService(token);
+  return res.status(200).json({ message: "token autenticado" });
+};
