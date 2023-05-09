@@ -45,7 +45,11 @@ export class User {
   @Column({ length: 200, nullable: true })
   description: string;
 
-  @Column({ type: "enum", enum: AccountType })
+  @Column({
+    type: "enum",
+    enum: AccountType,
+    enumName: "users_typeofaccount_enum",
+  })
   typeOfAccount: AccountType;
 
   @Column({ default: true })
