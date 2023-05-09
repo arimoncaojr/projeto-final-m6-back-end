@@ -20,11 +20,14 @@ export const updateCommentService = async (
     throw new AppError("Comment not found!", 404);
   }
 
-  if (userId !== foundComment.userComment) {
+  if (userId !== foundComment.userCommentId) {
     throw new AppError("You can't edit this comment!", 401);
   }
 
-  const updateComment = commentRepo.create({ ...commentData });
+  const updateComment = commentRepo.create({
+    ...foundComment,
+    ...commentData,
+  });
 
   await commentRepo.save(updateComment);
 

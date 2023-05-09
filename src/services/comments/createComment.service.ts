@@ -34,7 +34,8 @@ export const createCommentService = async (
 
   const comment = commentRepository.create({
     ...commentData,
-    userComment: findUser.id,
+    userComment: findUser.name,
+    userCommentId: findUser.id,
     post: existingPost,
   });
 
