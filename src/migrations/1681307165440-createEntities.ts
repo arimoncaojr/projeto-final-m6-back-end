@@ -5,6 +5,10 @@ export class createEntities1681307165440 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
+      `CREATE TYPE "users_typeofaccount_enum" AS ENUM('comprador', 'anunciante')`
+    );
+
+    await queryRunner.query(
       `CREATE TABLE "addresses" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "cep" character varying(8) NOT NULL, "state" character varying(2) NOT NULL, "city" character varying(100) NOT NULL, "street" character varying(200) NOT NULL, "number" character varying(5), "complement" character varying(200), "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_745d8f43d3af10ab8247465e450" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
