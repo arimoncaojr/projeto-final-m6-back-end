@@ -6,7 +6,11 @@ import {
   postUpadteSerializer,
 } from "../serializers/post.serializers";
 import { commentRequestSerializer } from "../serializers/comment.serializers";
-import { createCommentController } from "../controllers/comments.controller";
+import {
+  createCommentController,
+  updateCommentController,
+  deleteCommentController,
+} from "../controllers/comments.controller";
 import {
   delistPostController,
   updatePostController,
@@ -35,6 +39,19 @@ postsRoutes.post(
   ensureAuthMiddleware,
   ensureDataIsValidMiddleware(commentRequestSerializer),
   createCommentController
+);
+
+postsRoutes.patch(
+  "/comments/:id",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(commentRequestSerializer),
+  updateCommentController
+);
+
+postsRoutes.delete(
+  "/comments/:id",
+  ensureAuthMiddleware,
+  deleteCommentController
 );
 
 postsRoutes.delete(
