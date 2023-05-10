@@ -49,6 +49,7 @@ export class User {
     type: "enum",
     enum: AccountType,
     enumName: "users_typeofaccount_enum",
+    unique: false,
   })
   typeOfAccount: AccountType;
 
