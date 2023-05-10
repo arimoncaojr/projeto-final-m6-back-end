@@ -61,7 +61,7 @@ export const postResponseSerializer: SchemaOf<IPostResponse> = yup
         id: yup.string().required(),
         email: yup.string().email().required(),
         phoneNumber: yup.string().required(),
-        description: yup.string().required(),
+        description: yup.string().notRequired().nullable(),
         name: yup.string().required(),
       })
       .required(),
