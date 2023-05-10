@@ -36,7 +36,7 @@ export class createEntities1681307165440 implements MigrationInterface {
       `ALTER TABLE "users" ADD CONSTRAINT "FK_bafb08f60d7857f4670c172a6ea" FOREIGN KEY ("addressId") REFERENCES "addresses"("id") ON DELETE SET NULL ON UPDATE NO ACTION`
     );
     await queryRunner.query(
-      `ALTER TABLE "users" ADD CONSTRAINT "UQ_typeofaccount_enum" UNIQUE ("typeOfAccount")`
+      `ALTER TABLE "users" ADD CONSTRAINT "UQ_typeofaccount_enum" ("typeOfAccount")`
     );
   }
 
