@@ -35,9 +35,6 @@ export class createEntities1681307165440 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "users" ADD CONSTRAINT "FK_bafb08f60d7857f4670c172a6ea" FOREIGN KEY ("addressId") REFERENCES "addresses"("id") ON DELETE SET NULL ON UPDATE NO ACTION`
     );
-    await queryRunner.query(
-      `ALTER TABLE "users" ADD CONSTRAINT "UQ_typeofaccount_enum" UNIQUE ("typeOfAccount")`
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
@@ -62,5 +59,8 @@ export class createEntities1681307165440 implements MigrationInterface {
       `ALTER TABLE "users" DROP CONSTRAINT "UQ_typeofaccount_enum"`
     );
     await queryRunner.query(`DROP TYPE "users_typeofaccount_enum"`);
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP CONSTRAINT "UQ_typeofaccount_enum"`
+    );
   }
 }
