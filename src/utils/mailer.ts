@@ -18,7 +18,7 @@ export const sendResetPasswordEmail = async (
     subject: "Recuperação de senha",
     text: `Você está recebendo este e-mail porque você solicitou a recuperação da senha de sua conta.
 Por favor, clique no link abaixo ou cole-o em seu navegador para concluir o processo:
-http://${process.env.PGHOST}:3001/resetpassword/${resetToken}
+https://projeto-final-m6-front-end.vercel.app/resetpassword/${resetToken}
 Se você não solicitou isso, por favor ignore este e-mail e sua senha permanecerá inalterada.`,
   };
 
